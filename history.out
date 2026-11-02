@@ -1,0 +1,30 @@
+    1  ps -eo pid,ruid,euid,comm | awk '$3 == 0 && $2 != 0'
+    2  > ~/processes.out
+    3  ps -eo pid,ruid,euid,comm | awk '$3 == 0 && $2 != 0' > ~/processes.out
+    4  cat ~/processes.out
+    5  cp /bin/cat ~/mycat
+    6  chow root:root ~/mycat
+    7  chown root:root /mycat
+    8  cp /bin/chown /home/user1/mychown
+    9  setcap cap_chown=+ep /home/user1/mychown
+   10  getcap /home/user1/mychown
+   11  touch /home/user1/testfile
+   12  su - user1 -c '/home/user1/mychown root:root /home/user1/testfile'
+   13  ls -l /home/user1/testfile
+   14  stat /home/user1/mychown >> ~/stat.out
+   15  getcap /home/user1/mychown >> ~/getcap.out
+   16  cp /bin/cat /home/user1/mycat
+   17  chown root:root /home/user1/mycat
+   18  chmod u+s /home/user1/mycat
+   19  ls -l /home/user1/mycat
+   20  su - user1 -c '/home/user1/mycat /etc/shadow'
+   21  stat /home/user1/mycat >> ~/stat.out
+   22  echo "user1 ALL=(ALL) NOPASSWD: /bin/date, /usr/bin/timedatectl" > /etc/sudoers.d/user1-time
+   23  chmod 440 /etc/sudoers.d/user1-time
+   24  su - user1 -c 'sudo timedatectl set-time "2026-01-01 12:00:00"'
+   25  timedatectl set-ntp false
+   26  su - user1 -c 'sudo timedatectl set-time "2026-01-01 12:00:00"'
+   27  date
+   28  timedatectl set-ntp true
+   29  cp /etc/sudoers.d/user1-time ~/sudoers.d_user1-time.out
+   30  history > ~/history.out
